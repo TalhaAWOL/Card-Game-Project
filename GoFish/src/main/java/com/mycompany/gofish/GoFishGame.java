@@ -14,11 +14,11 @@ import java.util.Random;
  */
 public class GoFishGame extends Game {
 
-    private List<Card> deck;
-    private List<Card> player1Hand;
-    private List<Card> player2Hand;
+    public List<Card> deck;
+    public List<Card> player1Hand;
+    public List<Card> player2Hand;
     private Random random;
-    private Player currentPlayer;
+    public Player currentPlayer;
 
     public GoFishGame() {
         super("Go Fish");
@@ -29,7 +29,7 @@ public class GoFishGame extends Game {
     }
 
     // Initialize the deck with cards
-    private void initializeDeck() {
+    public void initializeDeck() {
         for (Suit suit : Suit.values()) {
             for (Rank rank : Rank.values()) {
                 deck.add(new Card(rank, suit));
@@ -38,7 +38,7 @@ public class GoFishGame extends Game {
     }
 
     // Deal initial cards to players
-    private void dealInitialCards() {
+    public void dealInitialCards() {
         for (int i = 0; i < 7; i++) {
             player1Hand.add(drawCard());
             player2Hand.add(drawCard());
@@ -46,13 +46,13 @@ public class GoFishGame extends Game {
     }
 
     // Draw a card from the deck
-    private Card drawCard() {
+    public Card drawCard() {
         int index = random.nextInt(deck.size());
         return deck.remove(index);
     }
 
     // Switch to the next player
-    private void switchPlayer() {
+    public void switchPlayer() {
         if (currentPlayer == getPlayers().get(0)) {
             currentPlayer = getPlayers().get(1);
         } else {
@@ -61,7 +61,7 @@ public class GoFishGame extends Game {
     }
 
     // Check if a player has a book (a set of four cards of the same rank)
-    private boolean checkForBook(List<Card> hand) {
+    public boolean checkForBook(List<Card> hand) {
         for (Rank rank : Rank.values()) {
             int count = 0;
             for (Card card : hand) {
@@ -78,7 +78,7 @@ public class GoFishGame extends Game {
     }
 
     // Remove a book (a set of four cards of the same rank) from the player's hand
-    private void removeBookFromHand(List<Card> hand, Rank rank) {
+    public void removeBookFromHand(List<Card> hand, Rank rank) {
         hand.removeIf(card -> card.getRank() == rank);
     }
 
@@ -123,7 +123,7 @@ public class GoFishGame extends Game {
     }
 
     // Get the hand of a player
-    private List<Card> getPlayerHand(Player player) {
+    public List<Card> getPlayerHand(Player player) {
         if (player == getPlayers().get(0)) {
             return player1Hand;
         } else {
